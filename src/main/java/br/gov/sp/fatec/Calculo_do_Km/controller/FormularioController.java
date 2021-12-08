@@ -32,7 +32,7 @@ public class FormularioController {
     @Autowired
     FormularioService formService;
 
-    @JsonView(View.FormularioResumo.class)
+    @JsonView(View.FormularioCompleto.class)
     @GetMapping()
     public List<Formulario> buscarTodos() {
         return formService.buscarTodosFormularios();
@@ -56,13 +56,13 @@ public class FormularioController {
         return formService.buscaFormularioPorUsuarioNomeEValorSuperior(nome, valor);
     }
 
-    @JsonView(View.FormularioResumo.class) //testar consulta com dois parametrod
+    @JsonView(View.FormularioCompleto.class) //testar consulta com dois parametrod
     @GetMapping(value = "/usuario")
     public List<Formulario> buscarFormularioPorUsuario(@RequestParam(value="usuario") String usuario) {
         return formService.buscarFormularioPorUsuario(usuario);
     }
 
-    @JsonView(View.FormularioResumo.class)
+    @JsonView(View.FormularioCompleto.class)
     @PostMapping
     public ResponseEntity<Formulario> cadastraNovoFormulario (@RequestBody Formulario formulario,
            UriComponentsBuilder uriComponentsBuilder) {
